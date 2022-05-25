@@ -17,6 +17,8 @@ import java.util.List;
 @Service
 public class UserServiceImp implements UserService {
 
+// if (user.getPassword().equals(userRepo.findUserByEmail(user.getEmail()).getPassword() -
+// сделать метод в дао isExist.. добавлять в бд если он есть
 
     private UserRepo userRepo;
     private RoleRepo roleRepo;
@@ -35,9 +37,16 @@ public class UserServiceImp implements UserService {
     @Override
     @Transactional
     public void saveUser(User user) {
-
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        userRepo.save(user);
+        if (!bCryptPasswordEncoder.matches(user.getPassword(), userRepo.findUsersByEmail(user.getEmail()).getPassword())) {
+            userRepo.save(user);
+            user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        } else  {
+            System.out.println(user.getPassword());
+            System.out.println(userRepo.findUsersByEmail(user.getEmail()).getPassword());
+            System.out.println("НЕ СЮДА");
+        }
+//        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+//        userRepo.save(user);
     }
 
     @Override
