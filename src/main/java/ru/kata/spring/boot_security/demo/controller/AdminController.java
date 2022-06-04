@@ -13,7 +13,6 @@ import java.security.Principal;
 import java.util.List;
 
 @Controller
-@ComponentScan(basePackages = "demo")
 public class AdminController {
 
     private final UserService userService;
@@ -38,7 +37,6 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-
     @GetMapping(value = "/admin")
     public String getAllUsers(Principal principal, ModelMap model) {
         List<User> users = userService.getAllUsers();
@@ -47,11 +45,8 @@ public class AdminController {
                 userService.findUserByEmail(principal.getName()));
         model.addAttribute("user1", new User());
         model.addAttribute("roles", userService.getAllRoles());
-
-
         return "/admin1";
     }
-
 
     @PostMapping("/admin/{id}")
     public String updateUser(User user) {

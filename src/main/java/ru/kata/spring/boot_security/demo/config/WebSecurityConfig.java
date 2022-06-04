@@ -11,7 +11,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.rememberme.InMemoryTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
-import ru.kata.spring.boot_security.demo.config.SuccessUserHandler;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
 import javax.sql.DataSource;
