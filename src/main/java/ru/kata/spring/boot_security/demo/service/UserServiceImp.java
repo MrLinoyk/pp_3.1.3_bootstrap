@@ -16,8 +16,6 @@ import java.util.List;
 
 @Service
 public class UserServiceImp implements UserService {
-
-
     private UserRepo userRepo;
     private RoleRepo roleRepo;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -74,7 +72,6 @@ public class UserServiceImp implements UserService {
     @Override
     @Transactional
     public void editUser(User user) {
-
         if (user.getPassword().equals(userRepo.findUserByEmail(user.getEmail()).getPassword())) {
             userRepo.save(user);
         } else if (user.getPassword().equals("") & user.getRoles() != null) {

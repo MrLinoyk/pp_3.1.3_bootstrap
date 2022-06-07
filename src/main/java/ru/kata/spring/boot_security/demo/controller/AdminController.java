@@ -15,12 +15,10 @@ import java.util.List;
 public class AdminController {
 
     private final UserService userService;
-
     @Autowired
     public AdminController(UserService userService) {
         this.userService = userService;
     }
-
 
     @GetMapping("/registration")
     public String registration(ModelMap model) {
@@ -31,7 +29,6 @@ public class AdminController {
 
     @PostMapping("/registration")
     public String addRegistration(@ModelAttribute("user1") @Valid User user) {
-
         userService.saveUser(user);
         return "redirect:/admin";
     }
@@ -40,8 +37,7 @@ public class AdminController {
     public String getAllUsers(Principal principal, ModelMap model) {
         List<User> users = userService.getAllUsers();
         model.addAttribute("users", users);
-        model.addAttribute("admin",
-                userService.findUserByEmail(principal.getName()));
+        model.addAttribute("admin", userService.findUserByEmail(principal.getName()));
         model.addAttribute("user1", new User());
         model.addAttribute("roles", userService.getAllRoles());
         return "/admin1";

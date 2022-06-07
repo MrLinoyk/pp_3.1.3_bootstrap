@@ -9,24 +9,26 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.Set;
 
-
 @Entity
 public class User implements UserDetails{
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column
     private String password;
+    @Column
     private String firstName;
+    @Column
     private String lastName;
+    @Column
     private Integer age;
+    @Column
     private String email;
 
-    @ManyToMany(cascade = {CascadeType.DETACH}, fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JsonIgnore
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
-
 
     public User(Long id, String password, String firstName, String lastName, Integer age, String email, Set<Role> roles) {
         this.id = id;
@@ -37,7 +39,6 @@ public class User implements UserDetails{
         this.email = email;
         this.roles = roles;
     }
-
 
     public User() {
     }

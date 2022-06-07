@@ -20,13 +20,9 @@ import javax.sql.DataSource;
 @ComponentScan(basePackages = "ru")
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-
     private UserService userService;
-
     private SuccessUserHandler successUserHandler;
-
     private BCryptPasswordEncoder bCryptPasswordEncoder;
-
     private DataSource dataSource;
 
     @Autowired

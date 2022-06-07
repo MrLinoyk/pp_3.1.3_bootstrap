@@ -21,7 +21,7 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public String loginPage (ModelMap modelMap, Principal principal) {
+    public String loginPage () {
         return "/login";
     }
 
